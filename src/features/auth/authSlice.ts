@@ -33,10 +33,6 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // login(state, action: PayloadAction<any>) {
-    //   state.isLoggedIn = true;
-    //   state.user = action.payload;
-    // },
     logout(state) {
       state.isLoggedIn = false;
       state.user = null;
@@ -64,7 +60,11 @@ const authSlice = createSlice({
         state.user = null;
         console.log(action.error.message);
         if (action.error.message === "Request failed with status code 401") {
-          state.error = "Acces denies ! invalid credentials";
+          state.error = "Invalid request. Please check your input.";
+        } else if (
+          action.error.message === "Request failed with status code 400"
+        ) {
+          state.error = "Incorrect username or password.";
         } else {
           state.error = action.error.message;
         }

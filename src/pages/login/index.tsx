@@ -4,7 +4,6 @@ import {
     CssBaseline,
     TextField,
     Typography,
-    createTheme,
 } from '@mui/material';
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -12,26 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ROUTES } from "@/constants/Routes";
 import { loginUser } from '@/features/auth/authSlice';
 import { RootState } from '@/app/store';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
-let theme = createTheme()
-theme = createTheme(theme, {
-    paper: {
-        marginTop: theme.spacing(8),
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-    },
-    form: {
-        width: "100%",
-        marginTop: theme.spacing(1),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-});
 
 function Login() {
-    const classes = theme;
     const dispatch = useDispatch();
     const router = useRouter();
     const [username, setUsername] = useState("");
@@ -51,6 +34,7 @@ function Login() {
             password
         };
         try {
+            //@ts-ignore
             const result = await dispatch(loginUser(userCredentials));
             console.log('Response from server:', result);
             if (loginUser.fulfilled.match(result)) {
@@ -68,11 +52,11 @@ function Login() {
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
-            <div className={classes.paper}>
+            <div >
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form noValidate>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -104,12 +88,12 @@ function Login() {
                         type="button"
                         fullWidth
                         variant="contained"
-                        color="primary"
-                        className={classes.submit}
+                        style={{ backgroundColor: '#009688' }}
                         onClick={handleLogin}
+                        endIcon={<LockOpenIcon />}
                     >
-                        {/* {loading ? "loading..." : "Login"} */}
-                        Login
+                        {loading ? "loading..." : "Login"}
+                        {/* Login */}
                     </Button>
                 </form>
             </div>

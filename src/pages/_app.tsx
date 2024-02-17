@@ -1,6 +1,5 @@
 import { store } from "@/app/store";
 import { ROUTES } from "@/constants/Routes";
-import "@/styles/globals.css";
 import { ThemeProvider, unstable_createMuiStrictModeTheme } from "@mui/material";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";

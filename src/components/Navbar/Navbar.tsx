@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "@/features/auth/authSlice";
 import { ROUTES } from "@/constants/Routes";
 import { useRouter } from "next/router";
-
+import LockIcon from '@mui/icons-material/Lock';
 const Navbar = () => {
     const dispatch = useDispatch();
     const router = useRouter();
@@ -16,12 +16,13 @@ const Navbar = () => {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" style={{ backgroundColor: '#607d8b', color: '#fff' }}>
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     TO-DO
                 </Typography>
-                <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                <Button style={{ backgroundColor: '#212121' }} variant="contained"
+                    onClick={handleLogout} endIcon={<LockIcon />}>Logout</Button>
             </Toolbar>
         </AppBar>
     );

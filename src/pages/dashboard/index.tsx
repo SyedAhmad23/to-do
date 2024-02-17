@@ -1,9 +1,9 @@
-import Navbar from "@/components/Navbar/Navbar";
+import TodoList from "@/components/TodoList/TodoList";
 import React from "react";
 
 const dashboard = () => {
     return <div>
-        <Navbar />
+        <TodoList />
     </div>;
 };
 
